@@ -2,96 +2,395 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Menu du Restaurant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Nour - Menu Digital</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #fdfdfd;
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
-    header {
-      background: #8B0000;
-      color: white;
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Effet de particules en arrière-plan */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 2px, transparent 2px),
+        radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 2px, transparent 2px);
+      background-size: 60px 60px;
+      z-index: -1;
+      animation: float 20s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    /* Header avec le nom du restaurant */
+    .header {
       text-align: center;
+      padding: 50px 20px 40px;
+      color: white;
+    }
+
+    .restaurant-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      letter-spacing: 3px;
+      position: relative;
+    }
+
+    .restaurant-name::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #FFD700, transparent);
+      border-radius: 2px;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      font-weight: 300;
+      opacity: 0.9;
+      margin-top: 25px;
+      letter-spacing: 1px;
+    }
+
+    /* Conteneur du menu */
+    .menu-container {
+      max-width: 1200px;
+      margin: 0 auto;
       padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
     }
-    h1 {
-      margin: 0;
-    }
+
+    /* Sections du menu */
     .menu-section {
-      padding: 20px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 25px;
+      padding: 40px 35px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      animation: fadeInUp 0.8s ease-out;
+      transition: all 0.3s ease;
     }
-    .menu-section h2 {
-      border-bottom: 2px solid #8B0000;
-      padding-bottom: 5px;
-      color: #8B0000;
+
+    .menu-section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
     }
+
+    .menu-section:nth-child(2) { animation-delay: 0.2s; }
+    .menu-section:nth-child(3) { animation-delay: 0.4s; }
+    .menu-section:nth-child(4) { animation-delay: 0.6s; }
+    .menu-section:nth-child(5) { animation-delay: 0.8s; }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: #2c3e50;
+      margin-bottom: 25px;
+      text-align: center;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      border-radius: 2px;
+    }
+
+    /* Items du menu */
     .menu-item {
       display: flex;
       justify-content: space-between;
-      margin: 10px 0;
-      border-bottom: 1px dashed #ccc;
-      padding-bottom: 5px;
+      align-items: flex-start;
+      margin: 20px 0;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      position: relative;
     }
-    .menu-item span {
-      font-weight: bold;
+
+    .menu-item:last-child {
+      border-bottom: none;
     }
+
+    .menu-item:hover {
+      padding-left: 10px;
+      background: rgba(102, 126, 234, 0.05);
+      border-radius: 10px;
+      border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+    }
+
+    .menu-item:hover::before {
+      content: '🍽️';
+      position: absolute;
+      left: -15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      opacity: 0.7;
+    }
+
+    .item-info {
+      flex: 1;
+      margin-right: 15px;
+    }
+
+    .item-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #2c3e50;
+      margin-bottom: 5px;
+      line-height: 1.3;
+    }
+
+    .item-description {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.4;
+      font-style: italic;
+    }
+
     .price {
-      color: #333;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #764ba2;
+      background: rgba(102, 126, 234, 0.1);
+      padding: 8px 15px;
+      border-radius: 20px;
+      border: 2px solid rgba(102, 126, 234, 0.2);
+      min-width: 70px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    /* Icônes des sections */
+    .section-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      display: block;
+      text-align: center;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .restaurant-name {
+        font-size: 3rem;
+      }
+      
+      .menu-container {
+        grid-template-columns: 1fr;
+        padding: 15px;
+        gap: 20px;
+      }
+      
+      .menu-section {
+        padding: 30px 25px;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .menu-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      
+      .price {
+        align-self: flex-end;
+        margin-top: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header {
+        padding: 30px 15px 20px;
+      }
+      
+      .restaurant-name {
+        font-size: 2.5rem;
+      }
+      
+      .tagline {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>🍽️ Restaurant Le Délice</h1>
-    <p>Bienvenue - Découvrez notre menu</p>
-  </header>
+  <!-- Header -->
+  <div class="header">
+    <h1 class="restaurant-name">NOUR</h1>
+    <p class="tagline">Menu Digital - Cuisine Authentique & Raffinée</p>
+  </div>
 
-  <div class="menu-section">
-    <h2>Entrées</h2>
-    <div class="menu-item">
-      <span>Salade César</span> <span class="price">5.00 €</span>
+  <!-- Menu Container -->
+  <div class="menu-container">
+    <!-- Section Entrées -->
+    <div class="menu-section">
+      <span class="section-icon">🥗</span>
+      <h2 class="section-title">Entrées</h2>
+      
+      <div class="menu-item">
+        <div class="item-info">
+          <div class="item-name">Salade César</div>
+          <div class="item-description">Laitue croquante, croûtons dorés, parmesan et sauce césar maison</div>
+        </div>
+        <span class="price">5.00 €</span>
+      </div>
+      
+      <div class="menu-item">
+        <div class="item-info">
+          <div class="item-name">Soupe à l'Oignon</div>
+          <div class="item-description">Traditionnelle soupe gratinée au fromage, servie chaude</div>
+        </div>
+        <span class="price">4.50 €</span>
+      </div>
     </div>
-    <div class="menu-item">
-      <span>Soupe à l’oignon</span> <span class="price">4.50 €</span>
+
+    <!-- Section Plats Principaux -->
+    <div class="menu-section">
+      <span class="section-icon">🥩</span>
+      <h2 class="section-title">Plats Principaux</h2>
+      
+      <div class="menu-item">
+        <div class="item-info">
+          <div class="item-name">Steak Frites</div>
+          <div class="item-description">Entrecôte grillée, frites maison et sauce au poivre</div>
+        </div>
+        <span class="price">12.00 €</span>
+      </div>
+      
+      <div class="menu-item">
+        <div class="item-info">
+          <div class="item-name">Poulet Rôti aux Herbes</div>
+          <div class="item-description">Cuisse de poulet fermier, légumes de saison rôtis</div>
+        </div>
+        <span class="price">10.50 €</span>
+      </div>
+      
+      <div class="menu-item">
+        <div class="item-info">
+          <div class="item-name">Pâtes Carbonara</div>
+          <div class="item-description">Spaghettis, lardons fumés, crème fraîche et parmesan râpé</div>
+        </div>
+        <span class="price">9.00 €</span>
+      </div>
+    </div>
+
+    <!-- Section Desserts -->
+    <div class="menu-section">
+      <span class="section-icon">🍰</span>
+      <h2 class="section-title">Desserts</h2>
+      
+      <div class="menu-item">
+        <div class="item-info">
+          <div class="item-name">Tiramisu</div>
+          <div class="item-description">Dessert italien traditionnel, café et mascarpone</div>
+        </div>
+        <span class="price">4.00 €</span>
+      </div>
+      
+      <div class="menu-item">
+        <div class="item-info">
+          <div class="item-name">Crème Brûlée</div>
+          <div class="item-description">Crème vanillée caramélisée, croquant au sucre</div>
+        </div>
+        <span class="price">4.50 €</span>
+      </div>
+    </div>
+
+    <!-- Section Boissons -->
+    <div class="menu-section">
+      <span class="section-icon">🥤</span>
+      <h2 class="section-title">Boissons</h2>
+      
+      <div class="menu-item">
+        <div class="item-info">
+          <div class="item-name">Coca-Cola</div>
+          <div class="item-description">Boisson gazeuse rafraîchissante, 33cl</div>
+        </div>
+        <span class="price">2.50 €</span>
+      </div>
+      
+      <div class="menu-item">
+        <div class="item-info">
+          <div class="item-name">Eau Minérale</div>
+          <div class="item-description">Eau plate ou pétillante, 50cl</div>
+        </div>
+        <span class="price">1.50 €</span>
+      </div>
+      
+      <div class="menu-item">
+        <div class="item-info">
+          <div class="item-name">Café</div>
+          <div class="item-description">Expresso italien, grains fraîchement moulus</div>
+        </div>
+        <span class="price">2.00 €</span>
+      </div>
     </div>
   </div>
 
-  <div class="menu-section">
-    <h2>Plats principaux</h2>
-    <div class="menu-item">
-      <span>Steak Frites</span> <span class="price">12.00 €</span>
-    </div>
-    <div class="menu-item">
-      <span>Poulet rôti aux herbes</span> <span class="price">10.50 €</span>
-    </div>
-    <div class="menu-item">
-      <span>Pâtes Carbonara</span> <span class="price">9.00 €</span>
-    </div>
-  </div>
-
-  <div class="menu-section">
-    <h2>Desserts</h2>
-    <div class="menu-item">
-      <span>Tiramisu</span> <span class="price">4.00 €</span>
-    </div>
-    <div class="menu-item">
-      <span>Crème brûlée</span> <span class="price">4.50 €</span>
-    </div>
-  </div>
-
-  <div class="menu-section">
-    <h2>Boissons</h2>
-    <div class="menu-item">
-      <span>Coca-Cola</span> <span class="price">2.50 €</span>
-    </div>
-    <div class="menu-item">
-      <span>Eau minérale</span> <span class="price">1.50 €</span>
-    </div>
-    <div class="menu-item">
-      <span>Café</span> <span class="price">2.00 €</span>
-    </div>
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2025 Restaurant Nour - Une expérience culinaire inoubliable</p>
   </div>
 </body>
 </html>
