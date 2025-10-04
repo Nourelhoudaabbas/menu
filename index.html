@@ -202,6 +202,168 @@
       font-style: italic;
     }
 
+    /* Section Avis Clients */
+    .reviews-section {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 25px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      margin-bottom: 40px;
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .reviews-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+
+    .reviews-subtitle {
+      color: #666;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    .review-form {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 500;
+      color: #2c3e50;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid #e9ecef;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.9);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 15px rgba(102, 126, 234, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .rating-group {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .rating-label {
+      font-weight: 500;
+      color: #2c3e50;
+      font-size: 1rem;
+    }
+
+    .star-rating {
+      display: flex;
+      gap: 5px;
+    }
+
+    .star {
+      font-size: 1.8rem;
+      color: #ddd;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .star:hover,
+    .star.active {
+      color: #FFD700;
+      transform: scale(1.1);
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+    }
+
+    .existing-reviews {
+      margin-top: 40px;
+      text-align: left;
+    }
+
+    .review-item {
+      background: rgba(248, 249, 250, 0.8);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-left: 4px solid #667eea;
+    }
+
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .review-author {
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    .review-rating {
+      color: #FFD700;
+      font-size: 1.2rem;
+    }
+
+    .review-date {
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    .review-text {
+      color: #555;
+      line-height: 1.6;
+    }
+
     /* Footer */
     .footer {
       text-align: center;
@@ -211,7 +373,7 @@
     }
 
     /* Animations */
-    .welcome-card, .feature-card, .qr-section {
+    .welcome-card, .feature-card, .reviews-section, .qr-section {
       animation: fadeInUp 0.8s ease-out;
     }
 
@@ -223,8 +385,12 @@
       animation-delay: 0.4s;
     }
 
-    .qr-section {
+    .reviews-section {
       animation-delay: 0.6s;
+    }
+
+    .qr-section {
+      animation-delay: 0.8s;
     }
 
     @keyframes fadeInUp {
@@ -254,9 +420,26 @@
         margin: 20px;
       }
       
+      .reviews-section {
+        margin: 20px;
+        padding: 30px 20px;
+      }
+      
       .qr-section {
         margin: 20px;
         padding: 30px 20px;
+      }
+
+      .rating-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .review-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
       }
     }
   </style>
@@ -272,7 +455,7 @@
   <div class="main-content">
     <!-- Carte de bienvenue -->
     <div class="welcome-card">
-      <h2 class="welcome-title">Bienvenue chez Nourrrrr</h2>
+      <h2 class="welcome-title">Bienvenue chez Nour</h2>
       <p class="welcome-text">
         Découvrez notre menu digital et plongez dans un voyage culinaire 
         exceptionnel où tradition et modernité se rencontrent.
@@ -284,7 +467,7 @@
       <div class="feature-card">
         <span class="feature-icon">🍽️</span>
         <h3 class="feature-title">Menu Complet</h3>
-        <p class="feature-desc">Explorezzzzz notre sélection de plats authentiques préparés avec passion</p>
+        <p class="feature-desc">Explorez notre sélection de plats authentiques préparés avec passion</p>
       </div>
       <div class="feature-card">
         <span class="feature-icon">⚡</span>
@@ -296,6 +479,65 @@
         <h3 class="feature-title">Qualité Premium</h3>
         <p class="feature-desc">Ingrédients frais et techniques culinaires d'exception</p>
       </div>
+    </div>
+
+    <!-- Section Avis Clients -->
+    <div class="reviews-section">
+      <h2 class="reviews-title">💬 Votre Avis Compte</h2>
+      <p class="reviews-subtitle">Partagez votre expérience chez Nour</p>
+      
+      <!-- Formulaire d'avis -->
+      <form class="review-form" id="reviewForm" method="POST" action="https://formspree.io/f/mdkwdkdr">
+        <div class="form-group">
+          <label for="customerName">Votre nom</label>
+          <input type="text" id="customerName" name="customerName" placeholder="Entrez votre nom" required>
+        </div>
+
+        <div class="form-group">
+          <label for="customerEmail">Email (optionnel)</label>
+          <input type="email" id="customerEmail" name="customerEmail" placeholder="votre@email.com">
+        </div>
+
+        <div class="rating-group">
+          <span class="rating-label">Note :</span>
+          <div class="star-rating" id="starRating">
+            <span class="star" data-rating="1">★</span>
+            <span class="star" data-rating="2">★</span>
+            <span class="star" data-rating="3">★</span>
+            <span class="star" data-rating="4">★</span>
+            <span class="star" data-rating="5">★</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="visitType">Type de visite</label>
+          <select id="visitType" name="visitType" required>
+            <option value="">Sélectionnez...</option>
+            <option value="diner">Dîner</option>
+            <option value="dejeuner">Déjeuner</option>
+            <option value="livraison">Livraison</option>
+            <option value="emporter">À emporter</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="photoLink">Lien vers votre photo (optionnel)</label>
+          <input type="url" id="photoLink" name="photoLink" placeholder="https://drive.google.com/... ou https://dropbox.com/...">
+          <small style="color: #666; font-size: 0.85rem; margin-top: 5px; display: block;">
+            💡 Uploadez votre photo sur Google Drive, Dropbox ou autre et partagez le lien ici
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="reviewText">Votre commentaire</label>
+          <textarea id="reviewText" name="reviewText" placeholder="Partagez votre expérience chez Nour..." required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Publier mon avis</button>
+      </form>
+
+      <!-- Avis existants -->
+  
     </div>
 
     <!-- Section QR Code -->
@@ -315,6 +557,96 @@
   </div>
 
   <script>
+    // === FONCTIONNALITÉ RATING ÉTOILES ===
+    let selectedRating = 0;
+    const stars = document.querySelectorAll('.star');
+
+    stars.forEach((star, index) => {
+      star.addEventListener('click', () => {
+        selectedRating = index + 1;
+        updateStars();
+      });
+
+      star.addEventListener('mouseenter', () => {
+        highlightStars(index + 1);
+      });
+    });
+
+    document.querySelector('.star-rating').addEventListener('mouseleave', () => {
+      updateStars();
+    });
+
+    function highlightStars(rating) {
+      stars.forEach((star, index) => {
+        if (index < rating) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
+      });
+    }
+
+    function updateStars() {
+      stars.forEach((star, index) => {
+        if (index < selectedRating) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
+      });
+    }
+
+    // === GESTION DU FORMULAIRE D'AVIS ===
+    document.getElementById('reviewForm').addEventListener('submit', function(e) {
+      // Vérifier que le rating est sélectionné
+      if (selectedRating === 0) {
+        e.preventDefault(); // Empêcher l'envoi seulement si pas de rating
+        alert('Veuillez sélectionner une note avec les étoiles');
+        return;
+      }
+
+      // Ajouter la valeur du rating au formulaire
+      const ratingInput = document.createElement('input');
+      ratingInput.type = 'hidden';
+      ratingInput.name = 'rating';
+      ratingInput.value = selectedRating;
+      this.appendChild(ratingInput);
+
+      // Le formulaire s'enverra automatiquement à Formspree
+      // grâce à method="POST" action="https://formspree.io/f/mdkwdkdr"
+    });
+
+    function addReviewToList(review) {
+      const reviewsContainer = document.querySelector('.existing-reviews');
+      const starsHTML = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+      
+      const newReview = document.createElement('div');
+      newReview.className = 'review-item';
+      newReview.style.animationDelay = '0.2s';
+      newReview.style.animation = 'fadeInUp 0.6s ease-out forwards';
+      
+      newReview.innerHTML = `
+        <div class="review-header">
+          <span class="review-author">${review.name}</span>
+          <div>
+            <span class="review-rating">${starsHTML}</span>
+            <span class="review-date">Maintenant</span>
+          </div>
+        </div>
+        <p class="review-text">${review.comment}</p>
+        <small style="color: #888; font-style: italic;">Type de visite: ${review.visitType}</small>
+      `;
+      
+      // Insérer le nouvel avis en premier
+      const firstReview = reviewsContainer.querySelector('.review-item');
+      if (firstReview) {
+        reviewsContainer.insertBefore(newReview, firstReview);
+      } else {
+        reviewsContainer.appendChild(newReview);
+      }
+    }
+
+    // === GÉNÉRATION DU QR CODE ===
     // Le lien de ton menu
     const url = "https://nourelhoudaabbas.github.io/menu/resto";
 
@@ -343,8 +675,6 @@
   </script>
 </body>
 </html>
-
-
 
 
 
